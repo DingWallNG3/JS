@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        <link rel="stylesheet" href="main.css">
+        <title>Hello, world!</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class='left-menu'>
+            <p>Menu Title</p>
+        </div>
+        <div class='black-background slide-up'>
+            <div class='white-background'>
+                <p>로그인하세요</p>
+                <form action="login.php">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email" id="email">
+                        <p id='email-alert'>이메일이 빈칸입니다.</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" id='password'>
+                        <p id='pw-alert'>패스워드가 빈칸입니다.</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">전송</button>
+                    <button class="btn btn-danger" id='close'>닫기</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class='nav-menu'>
+            <h4 style='margin: 0'>Shirts Studio</h4>
+            <a id='nav-sub-btn'>Products</a>
+        </div>
+
+        <ul class="list-group nav-sub">
+            <li class="list-group-item">Outer</li>
+            <li class="list-group-item">Innerwear</li>
+            <li class="list-group-item">Shirts</li>
+        </ul>
+
+        <div class="jumbotron main-background">
+            <h1 class="display-4">Shirts Studio</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button" id='login'>Log In</a>
+            <a class="btn btn-danger btn-lg" href="#" role="button" id='show-menu'>Show Menu</a>
+        </div>
+        <div style="overflow: hidden; position: relative">
+            <div class='slide-container'>
+                <h4 class='my-4 text-center'>Showcase</h4>
+                <div class='slide-box'>
+                    <img src="img/1.jpg" alt="">
+                </div>
+                <div class='slide-box'>
+                    <img src="img/2.jpg" alt="">
+                </div>
+                <div class='slide-box'>
+                    <img src="img/3.jpg" alt="">
+                </div>
+            </div>
+            <button id='before'>Before</button>
+            <button id='next'>Next</button>
+        </div>
+
+        <button class='slide-1'>1</button>
+        <button class='slide-2'>2</button>
+        <button class='slide-3'>3</button>
+
+        <div class='my-5'></div>
+
+        <script>
+            var photoState=1;
+            $('#next').click(function() {
+                if (photoState  < 3) {
+                    $('.slide-container').removeClass('photo-'+photoState).addClass('photo-'+(photoState+1));
+                    photoState+=1;
+                }
+            });
+
+            $('#before').click(function() {
+                if (photoState > 1){
+                    $('.slide-container').removeClass('photo-'+photoState).addClass('photo-'+(photoState-1));
+                    photoState-=1;
+                }
+            });
+
+            $('.slide-1').click(function() {
+                $('.slide-container').removeClass('photo-2 photo-3').addClass('photo-1');
+                photoState = 1;
+            });
+            $('.slide-2').click(function() {
+                $('.slide-container').removeClass('photo-1 photo-3').addClass('photo-2');
+                photoState = 2;
+            });
+            $('.slide-3').click(function() {
+                $('.slide-container').removeClass('photo-1 photo-2').addClass('photo-3');
+                photoState = 3;
+            });
+        </script>
+
+        <script>
+            $('#show-menu').click(function() {
+                $('.left-menu').animate({marginLeft: '0px'}, 600);
+            });
+        </script>
+
+        <script>
+            $('#login').click(function() {
+                $('.black-background').removeClass('slide-up').addClass('slide-down');
+            });
+
+            $('#close').on('click', function() {
+                $('.black-background').removeClass('slide-down').addClass('slide-up');
+            });
+
+            $('#nav-sub-btn').click(function() {
+                $('.nav-sub').slideToggle();
+            });
+
+            // 이메일 input에 입력된 값이 빈칸인 경우,
+            // 폼의 전송을 막음, 안내문 띄움.
+            $('form').on('submit', function(e) {
+                if ($('#email').val() == '' ){
+                    e.preventDefault();
+                    $('#email-alert').html('이메일이 빈칸입니다.').show();
+                } else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($('#email').val()) == false) {
+                    e.preventDefault();
+                    $('#email-alert').html('이메일 형식이 틀렸습니다.').show();
+                }
+                if ($('#password').val() == '') {
+                    e.preventDefault();
+                    $('#pw-alert').show()
+                } else if (/[A-Z]+/.test($('#password').val()) ) {
+                    e.preventDefault();
+                }
+            });
+
+            $('#email').on('input', function() {
+                $('#email-alert').hide();
+            });
+            $('#password').on('input', function() {
+                $('#pw-alert').hide();
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    </body>
+</html>
