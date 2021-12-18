@@ -14,11 +14,30 @@
     </head>
     <body>
         <div class="card-group container">
+        <div class="card">
+            <img src="https://via.placeholder.com/600">
+            <div class="card-body">
+            <h5 class='title'>Card title</h5>
+            <p class='price'>가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+            </div>
         </div>
-        <div class='container my-4'>
-            <button class='btn btn-danger' id='sort-price'>가격순 정렬</button>
-            <button class='btn btn-danger' id='sort-name'>이름순 정렬</button>
-            <button class='btn btn-danger' id='below-5k'>5만원 이하</button>
+        <div class="card">
+            <img src="https://via.placeholder.com/600">
+            <div class="card-body">
+            <h5 class='title'>Card title</h5>
+            <p class='price'>가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/600">
+            <div class="card-body">
+            <h5 class='title'>Card title</h5>
+            <p class='price'>가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+            </div>
+        </div>
         </div>
 
         <script>
@@ -28,65 +47,16 @@
                 { id : 2, price : 60000, title : 'Black Monastery' }
             ]
 
-            function clearCardgroup(){
-                $('.card-group').html('');
+            for (let i = 0; i < $('.title').length; i++){
+                $('.title').eq(i).html(products[i].title);
+                $('.price').eq(i).html('가격 : '+ products[i].price);
             }
 
-            function makeCards(arr){
-                for (let i = 0; i < arr.length; i++) {
-                    $('.card-group').append(`<div class="card">
-                <img src="https://via.placeholder.com/600">
-                <div class="card-body">
-                    <h5 class='title'>Card title</h5>
-                    <p class='price'>가격 : 70000</p>
-                    <button class="btn btn-danger">주문하기</button>
-                </div>
-            </div>`);
-                }
-            }
-
-            function viewProducts(arr){
-                //for (let i = 0; i < $('.title').length; i++){
-                //    $('.title').eq(i).html(products[i].title);
-                //    $('.price').eq(i).html('가격 : '+ products[i].price);
-                //}
-                clearCardgroup();
-                makeCards(arr);
-                for (let i = 0; i < document.getElementsByClassName('card').length; i++){
-                    document.getElementsByClassName('title')[i].innerHTML = arr[i].title;
-                    document.getElementsByClassName('price')[i].innerHTML = '가격 : '+ arr[i].price;
-                }
-            }
-
-            viewProducts(products);
-
-            // 가격순 정렬
-            $('#sort-price').click(function() {
-                products.sort(function(a, b) {
-                    return a.price - b.price;
-                });
-                viewProducts(products);
-            });
-
-            // 이름순 정렬
-            $('#sort-name').click(function() {
-                products.sort(function(a, b){
-                    if(a.title > b.title) {
-                        return 1;
-                    } else {
-                        return -1;
-                    }
-                });
-                viewProducts(products);
-            });
-
-            // 5만원 이하만 표시
-            $('#below-5k').click(function() {
-                let arr = products.filter(function(a){
-                    return a.price <= 50000;
-                });
-                viewProducts(arr);
-            });
+            //for (let i = 0; i < document.getElementsByClassName('card').length; i++){
+            //    let thing = document.getElementsByClassName('card')[i];
+            //    thing.querySelector('h5').innerText = products[i].title;
+            //    thing.querySelector('p').innerText = '가격 : '+ products[i].price;
+            //}
         </script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
