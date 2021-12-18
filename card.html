@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="card.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Hello, world!</title>
+</head>
+<body>
+    <div class="card-background">
+        <div class="card-box">
+            <img src="img/card1.png" alt="">
+        </div>
+        <div class="card-box">
+            <img src="img/card2.png" alt="">
+        </div>
+        <div class="card-box">
+            <img src="img/card3.png" alt="">
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script>
+
+  function changePicture(picnum) {
+    let height = $(window).scrollTop() - picnum * 500;
+    console.log(height);
+    // 650 ~ 1150 scrollbar down
+    // change opacity 1 -> 0
+    let opa = (-1/500) * height + (115/50);
+    $('.card-box').eq(picnum).css('opacity', opa);
+    if (height > 650 && height < 1150) {
+      let wid = -0.0002 * height + 1.13;
+      $('.card-box').eq(picnum).css('transform', `scale(${wid})`);
+    }
+  }
+    $(window).on('scroll', function () {
+      for (let i = 0; i < $('.card-box').length; i++){
+        changePicture(i);
+      }
+    })
+</script>
+</body>
+</html>

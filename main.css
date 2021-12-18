@@ -105,7 +105,10 @@
 
 .slide-container {
     width: 300vw;
-    transition: transform 1s;
+}
+
+.transforming {
+    transition: transform 0.5s;
 }
 
 .photo-1 {
@@ -176,4 +179,22 @@ ul.list::after {
 
 .show {
     display: block;
+}
+
+.gray {
+    background: lightgray;
+    height: 2000px;
+    margin-top: 500px;
+}
+
+.image {
+    float: right;
+    width: 400px;
+    position: sticky;
+    top: 100px;
+}
+
+.text {
+    float: left;
+    width: 300px;
 }
