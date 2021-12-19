@@ -225,27 +225,27 @@
             manager.add(new Hammer.Pan({threshold: 0}));
 
             manager.on('pan', function (e){
-              console.log(e.deltaX);
-              // 만약에 왼쪽으로 그림을 슬라이드 했을 때...
-              if (e.deltaX < -1) {
-                $('.slide-container').css('transform', `translateX(${e.deltaX}px)`);
-                //이 사람이 마우스를 놓으면
-                // 두번째 사진으로 변해야함
-                if (e.isFinal && e.deltaX <= -75) {
-                  $('.slide-container').addClass('transforming');
-                  $('.slide-container').css('transform', 'translate(-100vw)');
-                  photoState++;
-                  setTimeout(function () {
-                    $('.slide-container').removeClass('transforming');
-                  }, 500);
-                } else if (e.isFinal){
-                  $('.slide-container').addClass('transforming');
-                  $('.slide-container').css('transform', 'translate(0vw)');
-                  setTimeout(function () {
-                    $('.slide-container').removeClass('transforming');
-                  }, 500);
+                console.log(e.deltaX);
+                // 만약에 왼쪽으로 그림을 슬라이드 했을 때...
+                if (e.deltaX < -1) {
+                    $('.slide-container').css('transform', `translateX(${e.deltaX}px)`);
+                    //이 사람이 마우스를 놓으면
+                    // 두번째 사진으로 변해야함
+                    if (e.isFinal && e.deltaX <= -75) {
+                        $('.slide-container').addClass('transforming');
+                        $('.slide-container').css('transform', 'translate(-100vw)');
+                        photoState++;
+                        setTimeout(function () {
+                            $('.slide-container').removeClass('transforming');
+                        }, 500);
+                    } else if (e.isFinal){
+                        $('.slide-container').addClass('transforming');
+                        $('.slide-container').css('transform', 'translate(0vw)');
+                        setTimeout(function () {
+                            $('.slide-container').removeClass('transforming');
+                        }, 500);
+                    }
                 }
-              }
             });
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
